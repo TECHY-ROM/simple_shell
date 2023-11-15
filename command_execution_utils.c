@@ -60,9 +60,9 @@ char *_dupchars(char *pathstr, int start, int stop)
  */
 char *get_path(info_t *info, char *pathstr, char *cmd)
 {
+	char *path;
 	int m = 0; /* Loop counter for iterating through pathstr */ 
-	current_position = 0; /* Stores the starting index of each path segment */
-	char *path; /* Buffer to store the current path segment */
+	int current_position = 0; /* Stores the starting index of each path segment */
 
 	/* Check if pathstr is NULL */
 	if (!pathstr)

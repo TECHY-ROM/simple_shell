@@ -1,12 +1,12 @@
 #include "shell.h"
 
 /**
- * _exit - Exits the shell.
+ * shell_exit - Exits the shell.
  * @info: Structure containing potential arguments.
  *
  * Return: Exits with a given exit status (0) if info->argv[0] != "exit".
  */
-int _exit(info_t *info)
+int shell_exit(info_t *info)
 {
 	int exitcheck;
 

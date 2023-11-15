@@ -56,7 +56,7 @@ int get_builtin(info_t *info)
 {
 	int m, built_in_result = -1;
 	builtin_t builtintbl[] = {
-		{"exit", _exit},
+		{"exit", shell_exit},
 		{"env", print_env},
 		{"help", _help},
 		{"history", _history},

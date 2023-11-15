@@ -1,6 +1,7 @@
 #ifndef _SHELL_H_
 #define _SHELL_H_
 
+#include <stddef.h>
 #include <stdio.h>
 #include <unistd.h>
 #include <stdlib.h>
@@ -19,37 +20,12 @@
 
 #define CONVERT_LOWERCASE 1
 #define CONVERT_UNSIGNED 2
-
-#define USE_GETLINE 0
-
 #define HIST_FILE ".simple_shell_history"
 #define HIST_MAX 4096
 
 /* External Variable */
 extern char **environ;
 
-/* Structure Declarations */
-/**
- * struct data - The passinfo structure contains pseudo-arguments designed for passing into a function,
- * enabling a consistent prototype for a function pointer structure.
- * @arg: A string containing arguments generated from getline.
- * @argv: An array of strings generated from the arg.
- * @path: A string representing the path for the current command.
- * @argc: The count of arguments.
- * @line_count: The count of errors.
- * @err_num: The error code used for the exit() function.
- * @linecount_flag: A flag indicating whether to count this line of input.
- * @fname: The filename of the program.
- * @env: A linked list representing a local copy of the environ variable.
- * @environ: A custom modified copy of the environ variable obtained from the linked list env.
- * @history: The history node.
- * @env_changed: A flag that is set to true if the environ variable was changed.
- * @status: The return status of the last executed command.
- * @cmd_buf: The address of the pointer to the cmd_buf used when chaining commands.
- * @cmd_buf_type: Represents the type of command, such as ||, &&, or ;.
- * @readfd: The file descriptor from which the line input is read.
- * @histcount: The count of the history line number.
- */
 typedef struct data
 {
     char *arg;
@@ -141,11 +117,12 @@ int check_delim(char c, char *delim);
 int is_alphabetic(int c);
 int convert_to_integer(char *s);
 
-int _exit(info_t *info);
+int shell_exit(info_t *info);
 int _cd(info_t *info);
 int _help(info_t *info);
 int _history(info_t *info);
 
+void print_list_str(const list_t *h);
 int print_env(info_t *info);
 char *get_env(info_t *info, const char *name);
 int set_env(info_t *info);
@@ -160,7 +137,7 @@ ssize_t get_input_line(info_t *info);
 ssize_t read_buffer(info_t *info, char *buf, size_t *i);
 int get_line_input(info_t *info, char **ptr, size_t *length);
 
-har **get_environ(info_t *info);
+char **get_environ(info_t *info);
 int _unsetenv(info_t *info, char *var);
 int _setenv(info_t *info, char *var, char *value);
 
@@ -183,7 +160,7 @@ void _listfree(list_t **head_ptr);
 size_t len_list(const list_t *h);
 char **list_strings(list_t *head);
 size_t list_print(const list_t *h);
-list_t *node_starts_with(list_t *node, char *prefix, char c)
+list_t *node_starts_with(list_t *node, char *prefix, char c);
 ssize_t node_index(list_t *head, list_t *node);
 
 int hsh(info_t *info, char **av);
