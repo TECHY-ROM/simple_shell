@@ -94,16 +94,3 @@ int _help(info_t *info)
 		_puts(*arg_array);
 	return (0);
 }
-
-/**
- * _history - Displays the history list, one command per line, preceded
- * with line numbers, starting at 0.
- * @info: Structure containing potential arguments.
- *
- * Return: Always 0.
- */
-int _history(info_t *info)
-{
-	list_print(info->history);
-	return (0);
-}

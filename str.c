@@ -68,7 +68,8 @@ void _puts(char *str)
  * _putchar - Writes the character c to stdout.
  * @character: The character to print.
  *
- * Return: On success 1. On error, -1 is returned, and errno is set appropriately.
+ * Return: On success 1. On error, -1 is returned,
+ * and errno is set appropriately.
  */
 int _putchar(char character)
 {

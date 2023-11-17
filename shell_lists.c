@@ -31,7 +31,7 @@ char **list_strings(list_t *head)
 	char **strs;
 	char *str;
 
-	if (!head || !i)
+	if (!head || !m)
 		return (NULL);
 	strs = malloc(sizeof(char *) * (m + 1));
 	if (!strs)
@@ -66,7 +66,7 @@ size_t list_print(const list_t *h)
 
 	while (h)
 	{
-		_puts(convert_number(h->num, 10, 0));
+		_puts(convert_to_string(h->num, 10, 0));
 		_putchar(':');
 		_putchar(' ');
 		_puts(h->str ? h->str : "(nil)");

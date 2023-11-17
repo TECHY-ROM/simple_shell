@@ -24,7 +24,7 @@ void set_info(info_t *info, char **av)
 	info->fname = av[0];
 	if (info->arg)
 	{
-		info->argv = strtow(info->arg, " \t");
+		info->argv = str_tow(info->arg, " \t");
 		if (!info->argv)
 		{
 			info->argv = malloc(sizeof(char *) * 2);
@@ -38,6 +38,8 @@ void set_info(info_t *info, char **av)
 			;
 		info->argc = m;
 
+		substitute_aliases(info);
+		substitute_variables(info);
 	}
 }
 
@@ -56,11 +58,11 @@ void free_info(info_t *info, int all)
 		if (!info->cmd_buf)
 			free(info->arg);
 		if (info->env)
-			free_list(&(info->env));
+			_listfree(&(info->env));
 		if (info->history)
-			free_list(&(info->history));
+			_listfree(&(info->history));
 		if (info->alias)
-			free_list(&(info->alias));
+			_listfree(&(info->alias));
 		free_f(info->environ);
 			info->environ = NULL;
 		safe_free((void **)info->cmd_buf);

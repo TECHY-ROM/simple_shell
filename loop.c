@@ -63,6 +63,7 @@ int get_builtin(info_t *info)
 		{"setenv", set_env},
 		{"unsetenv", unset_env},
 		{"cd", _cd},
+		{"alias", shell_alias},
 		{NULL, NULL}
 	};
 
